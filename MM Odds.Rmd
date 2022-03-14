@@ -1,0 +1,55 @@
+---
+title: "Webscraping Fanduel"
+author: "AwesomePie1453"
+date: "3/14/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Part 2
+
+In the last R markdown (Implied Probability), we played around with implied probability. This one, we will be webscraping Draftkings to get our March Madness odds, so I don't have to type them all in a matrix like with our NHL odds. 
+
+```{r library}
+library(rvest)
+library(implied)
+library(tidyverse)
+library(odds.converter)
+library(robotstxt)
+```
+
+```{r}
+paths_allowed("https://sportsbook.draftkings.com/leagues/basketball/88670771?category=team-futures")
+DraftKings <- read_html("https://sportsbook.draftkings.com/leagues/basketball/88670771?category=team-futures")
+typeof("Draftkings")
+```
+
+```{r}
+Team_Names <- DraftKings %>%
+  html_nodes(".sportsbook-outcome-cell__body") %>%
+  html_text()
+Team_Names
+```
+```{r}
+Odds <- DraftKings %>%
+  html_nodes(".default-color") %>%
+  html_text() %>%
+  as.numeric()
+Odds
+```
+```{r}
+MM_Odds <- tibble(
+  Team = Team_Names,
+  Odds= Odds)
+MM_Odds
+```
+Update- could not get it to work on MGM or DK, so I decided just to make it a matrix. Leaving this here as proof that I tried webscraping. 
+
+```{r MM}
+MM_odds <- rbind(c(4.00, 7.00, 9.50, 11.00, 13.0, 17.0, 18.0, 21.0, 21.0, 26.0, 26, 36, 41, 51, 66, 66, 71, 86, 101, 121, 121, 121, 151, 171, 201, 201, 201, 201, 201, 201, 251, 251, 251, 251, 251, 251, 251, 251, 401, 401, 401, 401, 401, 401, 401, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501 ,501, 501, 501, 501, 501, 501, 501, 501, 501, 501))
+MM <- implied_probabilities(MM_odds)
+MM$probabilities
+```
