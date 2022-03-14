@@ -216,32 +216,57 @@ MM_Odds</code></pre>
 ## # … with 2 variables: Team &lt;chr&gt;, Odds &lt;dbl&gt;</code></pre>
 <p>Update- could not get it to work on MGM or DK, so I decided just to make it a matrix. Leaving this here as proof that I tried webscraping.</p>
 <pre class="r"><code>MM_odds &lt;- rbind(c(4.00, 7.00, 9.50, 11.00, 13.0, 17.0, 18.0, 21.0, 21.0, 26.0, 26, 36, 41, 51, 66, 66, 71, 86, 101, 121, 121, 121, 151, 171, 201, 201, 201, 201, 201, 201, 251, 251, 251, 251, 251, 251, 251, 251, 401, 401, 401, 401, 401, 401, 401, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501 ,501, 501, 501, 501, 501, 501, 501, 501, 501, 501))
+colnames(MM_odds) &lt;- c(&quot;Gonzaga&quot;, &quot;Arizona&quot;, &quot;Kentucky&quot;, &quot;Kansas&quot;, &quot;Baylor&quot;, &quot;Auburn&quot;, &quot;Duke&quot;, &quot;Villanova&quot;, &quot;Purdue&quot;, &quot;Tennessee&quot;, &quot;Texas Tech&quot;, &quot;Iowa&quot;, &quot;UCLA&quot;, &quot;Houston&quot;, &quot;Illinois&quot;, &quot;Arkansas&quot;, &quot;Texas&quot;, &quot;Wisconsin&quot;, &quot;UConn&quot;, &quot;San Diego State&quot;, &quot;Michigan&quot;, &quot;LSU&quot;, &quot;Saint Marys&quot;, &quot;Albama&quot;, &quot;Virginia Tech&quot;, &quot;North Carolina&quot;, &quot;Providence&quot;, &quot;USC&quot;, &quot;Loyola Chicago&quot;, &quot;Boise State&quot;, &quot;Marquette&quot;, &quot;Ohio State&quot;, &quot;Miami-FL&quot;, &quot;Michigan State&quot;, &quot;Indiana&quot;, &quot;Memphis&quot;, &quot;Seton Hall&quot;, &quot;Colorado State&quot;, &quot;San Fransisco&quot;, &quot;Davidson&quot;, &quot;UAB&quot;, &quot;Wyoming&quot;, &quot;Rutgers&quot;, &quot;Chattanooga&quot;, &quot;Colgate&quot;, &quot;Vermont&quot;, &quot;Creighton&quot;, &quot;TCU&quot;, &quot;Notre Dame&quot;, &quot;Richmond&quot;, &quot;Iowa State&quot;, &quot;South Dakota State&quot;, &quot;Murray State&quot;, &quot;Georgia State&quot;, &quot;Longwood&quot;, &quot;Bryant&quot;, &quot;Wright State&quot;, &quot;Delaware&quot;, &quot;Jacksonville State&quot;, &quot;Montana State&quot;, &quot;Texas A&amp;M CC&quot;, &quot;New Mexico State&quot;, &quot;CS Fullerton&quot;, &quot;Texas Southern&quot;, &quot;Akron&quot;, &quot;Norfolk State&quot;, &quot;Saint Peters&quot;, &quot;Yale&quot;)
 MM &lt;- implied_probabilities(MM_odds)
 MM$probabilities</code></pre>
-<pre><code>##          [,1]      [,2]       [,3]       [,4]       [,5]       [,6]       [,7]
+<pre><code>##       Gonzaga   Arizona   Kentucky     Kansas     Baylor     Auburn       Duke
 ## [1,] 0.199595 0.1140543 0.08403998 0.07257998 0.06141383 0.04696352 0.04435443
-##            [,8]       [,9]      [,10]      [,11]      [,12]      [,13]
+##       Villanova     Purdue  Tennessee Texas Tech       Iowa       UCLA
 ## [1,] 0.03801809 0.03801809 0.03070692 0.03070692 0.02217722 0.01947268
-##           [,14]      [,15]      [,16]      [,17]       [,18]       [,19]
+##         Houston   Illinois   Arkansas      Texas   Wisconsin       UConn
 ## [1,] 0.01565451 0.01209666 0.01209666 0.01124479 0.009283486 0.007904751
-##           [,20]      [,21]      [,22]       [,23]       [,24]       [,25]
-## [1,] 0.00659818 0.00659818 0.00659818 0.005287284 0.004668888 0.003972039
-##            [,26]       [,27]       [,28]       [,29]       [,30]       [,31]
-## [1,] 0.003972039 0.003972039 0.003972039 0.003972039 0.003972039 0.003180796
-##            [,32]       [,33]       [,34]       [,35]       [,36]       [,37]
-## [1,] 0.003180796 0.003180796 0.003180796 0.003180796 0.003180796 0.003180796
-##            [,38]       [,39]       [,40]       [,41]       [,42]       [,43]
-## [1,] 0.003180796 0.001990972 0.001990972 0.001990972 0.001990972 0.001990972
-##            [,44]       [,45]       [,46]       [,47]       [,48]       [,49]
-## [1,] 0.001990972 0.001990972 0.001593572 0.001593572 0.001593572 0.001593572
-##            [,50]       [,51]       [,52]       [,53]       [,54]       [,55]
-## [1,] 0.001593572 0.001593572 0.001593572 0.001593572 0.001593572 0.001593572
-##            [,56]       [,57]       [,58]       [,59]       [,60]       [,61]
-## [1,] 0.001593572 0.001593572 0.001593572 0.001593572 0.001593572 0.001593572
-##            [,62]       [,63]       [,64]       [,65]       [,66]       [,67]
-## [1,] 0.001593572 0.001593572 0.001593572 0.001593572 0.001593572 0.001593572
-##            [,68]
-## [1,] 0.001593572</code></pre>
+##      San Diego State   Michigan        LSU Saint Marys      Albama
+## [1,]      0.00659818 0.00659818 0.00659818 0.005287284 0.004668888
+##      Virginia Tech North Carolina  Providence         USC Loyola Chicago
+## [1,]   0.003972039    0.003972039 0.003972039 0.003972039    0.003972039
+##      Boise State   Marquette  Ohio State    Miami-FL Michigan State     Indiana
+## [1,] 0.003972039 0.003180796 0.003180796 0.003180796    0.003180796 0.003180796
+##          Memphis  Seton Hall Colorado State San Fransisco    Davidson
+## [1,] 0.003180796 0.003180796    0.003180796   0.001990972 0.001990972
+##              UAB     Wyoming     Rutgers Chattanooga     Colgate     Vermont
+## [1,] 0.001990972 0.001990972 0.001990972 0.001990972 0.001990972 0.001593572
+##        Creighton         TCU  Notre Dame    Richmond  Iowa State
+## [1,] 0.001593572 0.001593572 0.001593572 0.001593572 0.001593572
+##      South Dakota State Murray State Georgia State    Longwood      Bryant
+## [1,]        0.001593572  0.001593572   0.001593572 0.001593572 0.001593572
+##      Wright State    Delaware Jacksonville State Montana State Texas A&amp;M CC
+## [1,]  0.001593572 0.001593572        0.001593572   0.001593572  0.001593572
+##      New Mexico State CS Fullerton Texas Southern       Akron Norfolk State
+## [1,]      0.001593572  0.001593572    0.001593572 0.001593572   0.001593572
+##      Saint Peters        Yale
+## [1,]  0.001593572 0.001593572</code></pre>
+<p>Those are the probabilities! And now lets transform the Decimal odds to American.</p>
+<pre class="r"><code>odds.dec2us(MM_odds)</code></pre>
+<pre><code>##      Gonzaga Arizona Kentucky Kansas Baylor Auburn Duke Villanova Purdue
+## [1,]     300     600      850   1000   1200   1600 1700      2000   2000
+##      Tennessee Texas Tech Iowa UCLA Houston Illinois Arkansas Texas Wisconsin
+## [1,]      2500       2500 3500 4000    5000     6500     6500  7000      8500
+##      UConn San Diego State Michigan   LSU Saint Marys Albama Virginia Tech
+## [1,] 10000           12000    12000 12000       15000  17000         20000
+##      North Carolina Providence   USC Loyola Chicago Boise State Marquette
+## [1,]          20000      20000 20000          20000       20000     25000
+##      Ohio State Miami-FL Michigan State Indiana Memphis Seton Hall
+## [1,]      25000    25000          25000   25000   25000      25000
+##      Colorado State San Fransisco Davidson   UAB Wyoming Rutgers Chattanooga
+## [1,]          25000         40000    40000 40000   40000   40000       40000
+##      Colgate Vermont Creighton   TCU Notre Dame Richmond Iowa State
+## [1,]   40000   50000     50000 50000      50000    50000      50000
+##      South Dakota State Murray State Georgia State Longwood Bryant Wright State
+## [1,]              50000        50000         50000    50000  50000        50000
+##      Delaware Jacksonville State Montana State Texas A&amp;M CC New Mexico State
+## [1,]    50000              50000         50000        50000            50000
+##      CS Fullerton Texas Southern Akron Norfolk State Saint Peters  Yale
+## [1,]        50000          50000 50000         50000        50000 50000</code></pre>
 </div>
 
 

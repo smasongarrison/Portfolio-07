@@ -21,26 +21,26 @@ library(odds.converter)
 library(robotstxt)
 ```
 
-```{r}
+```{r DK}
 paths_allowed("https://sportsbook.draftkings.com/leagues/basketball/88670771?category=team-futures")
 DraftKings <- read_html("https://sportsbook.draftkings.com/leagues/basketball/88670771?category=team-futures")
 typeof("Draftkings")
 ```
 
-```{r}
+```{r Names}
 Team_Names <- DraftKings %>%
   html_nodes(".sportsbook-outcome-cell__body") %>%
   html_text()
 Team_Names
 ```
-```{r}
+```{r Odds}
 Odds <- DraftKings %>%
   html_nodes(".default-color") %>%
   html_text() %>%
   as.numeric()
 Odds
 ```
-```{r}
+```{r tibble}
 MM_Odds <- tibble(
   Team = Team_Names,
   Odds= Odds)
@@ -50,6 +50,14 @@ Update- could not get it to work on MGM or DK, so I decided just to make it a ma
 
 ```{r MM}
 MM_odds <- rbind(c(4.00, 7.00, 9.50, 11.00, 13.0, 17.0, 18.0, 21.0, 21.0, 26.0, 26, 36, 41, 51, 66, 66, 71, 86, 101, 121, 121, 121, 151, 171, 201, 201, 201, 201, 201, 201, 251, 251, 251, 251, 251, 251, 251, 251, 401, 401, 401, 401, 401, 401, 401, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501 ,501, 501, 501, 501, 501, 501, 501, 501, 501, 501))
+colnames(MM_odds) <- c("Gonzaga", "Arizona", "Kentucky", "Kansas", "Baylor", "Auburn", "Duke", "Villanova", "Purdue", "Tennessee", "Texas Tech", "Iowa", "UCLA", "Houston", "Illinois", "Arkansas", "Texas", "Wisconsin", "UConn", "San Diego State", "Michigan", "LSU", "Saint Marys", "Albama", "Virginia Tech", "North Carolina", "Providence", "USC", "Loyola Chicago", "Boise State", "Marquette", "Ohio State", "Miami-FL", "Michigan State", "Indiana", "Memphis", "Seton Hall", "Colorado State", "San Fransisco", "Davidson", "UAB", "Wyoming", "Rutgers", "Chattanooga", "Colgate", "Vermont", "Creighton", "TCU", "Notre Dame", "Richmond", "Iowa State", "South Dakota State", "Murray State", "Georgia State", "Longwood", "Bryant", "Wright State", "Delaware", "Jacksonville State", "Montana State", "Texas A&M CC", "New Mexico State", "CS Fullerton", "Texas Southern", "Akron", "Norfolk State", "Saint Peters", "Yale")
 MM <- implied_probabilities(MM_odds)
 MM$probabilities
 ```
+
+Those are the probabilities! And now lets transform the Decimal odds to American. 
+
+```{r US}
+odds.dec2us(MM_odds)
+```
+
