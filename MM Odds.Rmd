@@ -55,9 +55,26 @@ MM <- implied_probabilities(MM_odds)
 MM$probabilities
 ```
 
+```{r MM2}
+MM2_odds <- cbind(c(4.00, 7.00, 9.50, 11.00, 13.0, 17.0, 18.0, 21.0, 21.0, 26.0, 26, 36, 41, 51, 66, 66, 71, 86, 101, 121, 121, 121, 151, 171, 201, 201, 201, 201, 201, 201, 251, 251, 251, 251, 251, 251, 251, 251, 401, 401, 401, 401, 401, 401, 401, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501, 501 ,501, 501, 501, 501, 501, 501, 501, 501, 501, 501))
+rownames(MM2_odds) <- c("Gonzaga", "Arizona", "Kentucky", "Kansas", "Baylor", "Auburn", "Duke", "Villanova", "Purdue", "Tennessee", "Texas Tech", "Iowa", "UCLA", "Houston", "Illinois", "Arkansas", "Texas", "Wisconsin", "UConn", "San Diego State", "Michigan", "LSU", "Saint Marys", "Albama", "Virginia Tech", "North Carolina", "Providence", "USC", "Loyola Chicago", "Boise State", "Marquette", "Ohio State", "Miami-FL", "Michigan State", "Indiana", "Memphis", "Seton Hall", "Colorado State", "San Fransisco", "Davidson", "UAB", "Wyoming", "Rutgers", "Chattanooga", "Colgate", "Vermont", "Creighton", "TCU", "Notre Dame", "Richmond", "Iowa State", "South Dakota State", "Murray State", "Georgia State", "Longwood", "Bryant", "Wright State", "Delaware", "Jacksonville State", "Montana State", "Texas A&M CC", "New Mexico State", "CS Fullerton", "Texas Southern", "Akron", "Norfolk State", "Saint Peters", "Yale")
+MM2 <- implied_probabilities(MM_odds)
+MM2$probabilities
+```
+
+
+
+
 Those are the probabilities! And now lets transform the Decimal odds to American. 
 
 ```{r US}
 odds.dec2us(MM_odds)
 ```
+
+Dataframe -
+
+```{r oddsdf}
+Odds_df <- data_frame(team_name = colnames(MM_odds), odds = MM2_odds)
+```
+
 
