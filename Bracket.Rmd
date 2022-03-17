@@ -24,15 +24,17 @@ library(robotstxt)
 
 
 ```{r Wprob, includ=FALSE}
+
 Weighted_Probabilities <- function(PT1, team_name_1, PT2, team_name_2){Pbin = (PT1 *100)/(PT1*100 + PT2*100)
-New_Variable <- print(rbinom(1, 1, prob=Pbin))
-if(New_Variable){
-  print(team_name_1)
+gameoutcome <- print(rbinom(1, 1, prob=Pbin))
+if(gameoutcome){
+  print(paste0(team_name_1," Beats ",team_name_2))
 return(c(PT1, team_name_1))
 }else{
-    print(team_name_2)
+    print(paste0(team_name_2," Beats ",team_name_1))
 return(c(PT2,team_name_2))
-}}
+}
+}
 ```
 
 ### Round of 64 Winners
@@ -108,7 +110,20 @@ Saint_Peters <- .001593572
 Yale <- .001593572
 ```
 
+
+```{r}
+
+library(TeachingDemos)
+library(tidyverse)
+
+
+char2seed('EricWillLose',set=FALSE) %>%
+set.seed()
+```
+
 ```{r Round64}
+
+
 W1 <- Weighted_Probabilities(Gonzaga, "Gonzaga", Georgia_State, "Georgia St.")
 W2 <- Weighted_Probabilities(Boise_State, "Boise State", Memphis, "Memphis")
 W3 <- Weighted_Probabilities(UConn, "UConn", New_Mesico_State, "New Mexico State")
@@ -145,8 +160,9 @@ W32 <- Weighted_Probabilities(Auburn, "Auburn", Jacksonville_State, "Jacksonvill
 ### Round of 32 Winners
 
 ```{r Round32}
+
 W33 <- Weighted_Probabilities(as.numeric(W1[1]), W1[2], as.numeric(W2[1]), W2[2])
-W34 <- Weighted_Probabilities(as.numeric(W3[1]), W3[2], as.numeric(W4[1]), W5[2])
+W34 <- Weighted_Probabilities(as.numeric(W3[1]), W3[2], as.numeric(W4[1]), W4[2])
 W35 <- Weighted_Probabilities(as.numeric(W5[1]), W5[2], as.numeric(W6[1]), W6[2])
 W36 <- Weighted_Probabilities(as.numeric(W7[1]), W7[2], as.numeric(W8[1]), W8[2])
 W37 <- Weighted_Probabilities(as.numeric(W9[1]), W9[2], as.numeric(W10[1]), W10[2])

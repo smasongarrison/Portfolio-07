@@ -5,9 +5,9 @@ date: "3/14/2022"
 output: html_document
 ---
 
-###Introduction
+# Introduction
 
-In creating the March Madness randomizer, I had to start small by figuring out the implied probabilties. This first R document is me playing around with the implied odds package, as well as the odds converter package. 
+In creating the March Madness randomizer, I had to start small by figuring out the implied probabilities. This first R document is me playing around with the implied odds package, as well as the odds converter package. 
 Information about each method of implied probability comes from below
 https://cran.r-project.org/web/packages/implied/vignettes/introduction.html
 
@@ -22,7 +22,7 @@ library(tidyverse)
 library(odds.converter)
 ```
 
-### The Basic Method
+## The Basic Method
 
 First I will set up the decimal odds (from Bovada sportsbook) of several NHL games from March 14th and March 15th 2022. 
 This is the basic method. I will do the other methods provided by the link above. 
@@ -78,7 +78,7 @@ If you want to learn about any of these, check the link above!
 
 ### Doing the opposite
 
-This next method will allow us to go from probabilities to odds. We will do it with the 'power' method, running our probabilites from that one back
+This next method will allow us to go from probabilities to odds. We will do it with the 'power' method, running our probabilities from that one back
 
 ```{r Prob}
 NHLProb <- implied_odds(NHLPower$probabilities[], 
@@ -105,6 +105,7 @@ Much better. Now say you wanted to see what +130 (the odds of coyotes to beat se
 ```{r 2all}
 odds.us2all(+130)
 ```
+
 You see the third one listed is "PROB", which is probability. Does this probability match up with any of the methods we used above? They are close, but not really. That is because there is no second value to compare to. Generally, +130 implies 43%, but the books operate slightly differently to make money. Truly. You can use prob2us to transform probabilities into what they should be in American odds, same with decimal.
 
 ```{r probus}

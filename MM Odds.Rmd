@@ -46,6 +46,7 @@ MM_Odds <- tibble(
   Odds= Odds)
 MM_Odds
 ```
+
 Update- could not get it to work on MGM or DK, so I decided just to make it a matrix. Leaving this here as proof that I tried webscraping. 
 
 ```{r MM}
@@ -71,7 +72,7 @@ Those are the probabilities! And now lets transform the Decimal odds to American
 odds.dec2us(MM_odds)
 ```
 
-Dataframe -
+Dataframe 
 
 ```{r oddsdf}
 Odds_df <- data_frame(team_name = colnames(MM_odds), odds = MM2_odds)
